@@ -12,6 +12,11 @@
     />
   </head>
   <body>
+
+    <div id="confirmation-popup" style="display: none;">
+      <p>Merci ! Votre réservation a été reçue.</p>
+    </div>
+
     <div class="topnav" id="myTopnav">
       <div class="header-logo">
       <img alt="logo" src="Logo.png" width="auto" height="auto" />
@@ -59,7 +64,7 @@
           <span class="close"></span>
           <div class="modal-body">
             <form
-            id="modal-Form"
+            id="modal-form"
               name="reserve"
               action="index.html"
               method="get"
@@ -96,8 +101,8 @@
                   type="email"
                   id="email"
                   name="email"
-                  
                 /><br>
+                <span class="error" id="errorEmail"></span>
               </div>
               <div
                 class="formData">
@@ -107,8 +112,8 @@
                   type="date"
                   id="birthdate"
                   name="birthdate"
-                  
                 /><br>
+                <span class="error" id="errorBirthdate"></span>
               </div>
               <div
                 class="formData">
@@ -119,9 +124,10 @@
                   name="quantity" 
                   min="0" 
                   max="99"
+                  value="0"
                   >
               </div>
-              <p class="text-label">Quelles villes ?</p>
+              <p class="text-label">Quelle ville ?</p>
               <div
                 class="formData">
                 <input
@@ -130,6 +136,7 @@
                   id="location1"
                   name="location"
                   value="New York"
+                  checked
                 />
                 <label class="checkbox-label" for="location1">
                   <span class="checkbox-icon"></span>
@@ -191,6 +198,7 @@
                   Portland</label
                 >
               </div>
+              <span class="error" id="errorRadioButtons"></span>
 
               <div
                 class="formData">
@@ -198,6 +206,7 @@
                   class="checkbox-input"
                   type="checkbox"
                   id="checkbox1"
+                  name="checkbox1"
                   checked
                 />
                 <label class="checkbox2-label" for="checkbox1">
@@ -205,12 +214,14 @@
                   J'ai lu et accepté les conditions d'utilisation.
                 </label>
                 <br>
+                <span class="error" id="errorCgv"></span>
                 <input class="checkbox-input" type="checkbox" id="checkbox2" />
                 <label class="checkbox2-label" for="checkbox2">
                   <span class="checkbox-icon"></span>
                   Je souhaite être prévenu(e) des prochains évènements.
                 </label>
                 <br>
+                
               </div>
               <input
                 id="btn-envoi"
