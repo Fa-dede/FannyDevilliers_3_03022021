@@ -30,6 +30,13 @@ function closeModal () {
 
 closeBtn.addEventListener("click", closeModal);
 
+// Message de confirmation du formulaire
+
+function showMessage() {
+  confirmMessage.style.display = "block";
+  event.preventDefault();
+}
+
 //Validation des champs
 
 let firstName = document.forms["reserve"] ["first"];
@@ -52,15 +59,6 @@ let errorCgv = document.getElementById('errorCgv');
 
 let buttonSubmit = document.getElementById('btn-envoi');
 let confirmMessage = document.getElementById('confirmation-popup');
-
-function showMessage() {
-  confirmMessage.style.display = "block";
-  event.preventDefault();
-}
-
-function sendForm (){
-  
-}
 
 function validate() {
     if(firstName.value < 2 ){
@@ -98,13 +96,15 @@ function validate() {
     }
 }
 
+// Fermeture du message de confirmation 
 
+let buttonCloseConfirmation = document.getElementById('close-confirmation');
 
+function closeConfirmation () {
+  confirmMessage.style.display = 'none';
+}
 
-// modalForm.addEventListener('submit', showMessage);
-  
-
-
+buttonCloseConfirmation.addEventListener('click', closeConfirmation);
 
 
 
