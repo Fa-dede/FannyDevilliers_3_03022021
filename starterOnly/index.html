@@ -69,6 +69,7 @@
               action="index.html"
               method="get"
               onsubmit="return validate()"
+              novalidate
             >
               <div
                 class="formData">
@@ -78,6 +79,8 @@
                   type="text"
                   id="first"
                   name="first"
+                  required
+                  minlength="2"
                   
                 /><br>
                 <span class="error" id="errorFirstName"></span>
@@ -90,6 +93,8 @@
                   type="text"
                   id="last"
                   name="last"
+                  required
+                  minlength="2"
                 /><br>
                 <span class="error" id="errorLastName"></span>
               </div>
@@ -101,6 +106,7 @@
                   type="email"
                   id="email"
                   name="email"
+                  required
                 /><br>
                 <span class="error" id="errorEmail"></span>
               </div>
@@ -112,6 +118,7 @@
                   type="date"
                   id="birthdate"
                   name="birthdate"
+                  required
                 /><br>
                 <span class="error" id="errorBirthdate"></span>
               </div>
@@ -125,6 +132,7 @@
                   min="0" 
                   max="99"
                   value="0"
+                  required
                   >
               </div>
               <p class="text-label">Quelle ville ?</p>

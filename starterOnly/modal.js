@@ -53,6 +53,15 @@ let errorCgv = document.getElementById('errorCgv');
 let buttonSubmit = document.getElementById('btn-envoi');
 let confirmMessage = document.getElementById('confirmation-popup');
 
+function showMessage() {
+  confirmMessage.style.display = "block";
+  event.preventDefault();
+}
+
+function sendForm (){
+  
+}
+
 function validate() {
     if(firstName.value < 2 ){
       firstName.style.backgroundColor = '#279e7a';
@@ -76,23 +85,25 @@ function validate() {
     else if(birthDate.value == "") {
       birthDate.style.backgroundColor = '#279e7a';
       errorBirthdate.innerHTML = "Veuillez saisir votre date de naissance";
-      email.focus();
+      birthDate.focus();
       return false;
     }
-
     else if (cgv.checked == false) {
       errorCgv.innerHTML = "Vous devez vérifier que vous acceptez les termes et conditions.";
       return false;
     }
+    else{
+      showMessage();
+      closeModal();
+    }
 }
 
-// Message de confirmation d'inscription
 
-let showMessage = () => {
-  confirmMessage.style.display = "block";
-}
 
-buttonSubmit.addEventListener('click', showMessage);
+
+// modalForm.addEventListener('submit', showMessage);
+  
+
 
 
 
