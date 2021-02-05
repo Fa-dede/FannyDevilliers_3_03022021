@@ -33,7 +33,7 @@ closeBtn.addEventListener("click", closeModal);
 // Message de confirmation du formulaire
 
 function showMessage() {
-  confirmMessage.style.display = "block";
+  confirmationBg.style.display = "flex";
   event.preventDefault();
 }
 
@@ -69,7 +69,7 @@ function validate() {
       
     }
     else if (lastName.value < 2 ){
-      lastName.style.backgroundColor = '#279e7a';
+      lastName.style.outline = 'red';
       errorLastName.innerHTML = "Veuillez entrer 2 caractères ou plus pour le champ du nom";
       lastName.focus();
       return false;
@@ -98,13 +98,17 @@ function validate() {
 
 // Fermeture du message de confirmation 
 
+let confirmationBg = document.getElementById('container-confirmation');
+
 let buttonCloseConfirmation = document.getElementById('close-confirmation');
+let crossCloseConfirmation = document.getElementById('cross-confirmation');
 
 function closeConfirmation () {
-  confirmMessage.style.display = 'none';
+  confirmationBg.style.display = 'none';
 }
 
 buttonCloseConfirmation.addEventListener('click', closeConfirmation);
+crossCloseConfirmation.addEventListener('click', closeConfirmation);
 
 
 
