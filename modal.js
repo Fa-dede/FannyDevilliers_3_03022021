@@ -162,13 +162,16 @@ function cgvValidation(){
 
 function validate(){
 
-  firstNameValidation();
-  lastNameValidation();
-  emailValidation();
-  birthdateValidation();
-  cgvValidation();
+  firstNameValidation(); // renvoi à la fonction qui valide le prénom
+  lastNameValidation(); // renvoi à la fonction qui valide le nom
+  emailValidation(); // renvoi à la fonction qui valide l'email
+  birthdateValidation(); // renvoi à la fonction qui valide la date de naissance
+  cgvValidation(); // renvoi à la fonction qui valide les conditions d'utilisations
+
+  //Affichage de la fenêtre de confirmation en cas de 
 
   if(firstNameValidation() && lastNameValidation() && emailValidation() && birthdateValidation() && cgvValidation()){
+    closeModal();
     showMessage();
   }
 }
