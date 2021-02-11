@@ -54,6 +54,7 @@ function firstNameValidation(){
 
   if(firstName.value.length < 2){
     alert.firstName.innerText="Veuillez entrer au moins 2 caractères";
+    firstName.focus();
     event.preventDefault();
     return false;
   }
@@ -69,6 +70,7 @@ function lastNameValidation(){
 
   if(lastName.value.length < 2){
     alert.lastName.innerText="Veuillez entrer au moins 2 caractères";
+    lastName.focus();
     event.preventDefault();
     return false;
   }
@@ -90,11 +92,13 @@ var mailFormat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9
   }
   else if(email.value == ""){
     alert.email.innerText = "Veuillez renseigner votre adresse email.";
+    email.focus();
     event.preventDefault();
     return false;
   }
   else if(!email.value.match(mailFormat)){
     alert.email.innerText = "L'adresse email n'est pas valide, veuillez renseigner une adresse valide.";
+    email.focus();
     event.preventDefault();
     return false;
   }
