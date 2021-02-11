@@ -35,7 +35,7 @@ closeBtn.addEventListener("click", closeModal);
 let firstName = document.getElementById('first');
 let lastName = document.getElementById('last');
 let email = document.getElementById('email');
-// let birthday = document.getElementById('birthdate');
+// let birthday = document.getElementById('birthdate'); déclarée dans la function birthdateValidation()
 let cgv = document.getElementById('checkbox1');
 
 // Alertes Messages
@@ -52,23 +52,14 @@ let alert = {
 
 function firstNameValidation(){
 
-  var firstNameIsValid = false;
-
-  function firstNameError(){
+  if(firstName.value.length < 2){
     alert.firstName.innerText="Veuillez entrer au moins 2 caractères";
     event.preventDefault();
-  }
-  
-  function removeAlertFirstName(){
-    alert.firstName.innerText = "";
-  }
-
-  if(firstName.value.length < 2){
-    firstNameError();
+    return false;
   }
   else{
-    removeAlertFirstName();
-    firstNameIsValid = true;
+    alert.firstName.innerText = "";
+    return true;
   }
 }
 
@@ -76,77 +67,42 @@ function firstNameValidation(){
 
 function lastNameValidation(){
 
-  var lastNameIsValid = false;
-
-  function lastNameError(){
+  if(lastName.value.length < 2){
     alert.lastName.innerText="Veuillez entrer au moins 2 caractères";
     event.preventDefault();
-  }
-  
-  function removeAlertLastName() {
-    alert.lastName.innerText = "";
-  }
-
-  if(lastName.value.length < 2){
-    lastNameError();
+    return false;
   }
   else{
-    removeAlertLastName();
-    lastNameIsValid = true;
+    alert.lastName.innerText = "";
+    return true;
   }
 }
 
 // Validation email 
 
 function emailValidation() {
-
-  // function emailIsValid(){
-  //   let emailValue = email.value; 
-  //   let Regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-  //   return Regex.test(emailValue);}
   
 var mailFormat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
-if(email.value.match(mailFormat)){
-  alert.email.innerText = "";
-  return true;
-}
-else if(email.value == ""){
-  alert.email.innerText = "Veuillez renseigner votre adresse email.";
-  return false;
-}
-else if(!email.value.match(mailFormat)){
-  alert.email.innerText = "L'adresse email n'est pas valide, veuillez renseigner une adresse valide.";
-  return false;
-}
-
-
-  // if(emailIsValid){
-  //   alert.email.innerText="C'est tout bon ! ";
-  //   return true;
-  // }
-
-  // else if(email.value == ""){
-  //   alert.email.innerText="Entrez une adresse email";
-  //   event.preventDefault; 
-  // }
-
-  
-  // else if(!emailIsValid){
-  //   alert.email.innerText="Entrez une adresse email VA LI DE ! ";
-  //   event.preventDefault;
-  // }
-  // else{
-  //   alert.email.innerText="";
-  //   mailIsValid = true;
-  // }
+  if(email.value.match(mailFormat)){
+    alert.email.innerText = "";
+    return true;
+  }
+  else if(email.value == ""){
+    alert.email.innerText = "Veuillez renseigner votre adresse email.";
+    event.preventDefault();
+    return false;
+  }
+  else if(!email.value.match(mailFormat)){
+    alert.email.innerText = "L'adresse email n'est pas valide, veuillez renseigner une adresse valide.";
+    event.preventDefault();
+    return false;
+  }
 }
 
 //Validation date de naissance
 
 function birthdateValidation(){
-  
-  var birthdateIsValid = false;
 
   let birthdayInput = document.getElementById('birthdate').value;
 
@@ -160,61 +116,51 @@ function birthdateValidation(){
   
   var age = (currentTime - birthdayTime)/31536000000; // calcul de l'âge 
 
-  function birthdateMinor () {
-    alert.birthdate.innerText = "Vous devez être majeur.e pour pouvoir vous inscrire";
-    event.preventDefault();
-    
-  }
-
-  function birthdateDead () {
-    alert.birthdate.innerText = "Vous êtes fossilisé ? Rentrez une date valide ! "
-    event.preventDefault();
-    
-  }
-
-  function removeAlertBirthdate (){
-    alert.birthdate.innerText = "";
-  }
-
   if(birthdayInput === ""){
     alert.birthdate.innerText = "Merci d'entrer votre date de naissance";
     event.preventDefault();
+    return false;
   }
   else if(age >= 0 && age < 18){
-     birthdateMinor();
+    alert.birthdate.innerText = "Vous devez être majeur.e pour pouvoir vous inscrire";
+    event.preventDefault();
+     return false;
   }
   else if (age > 120) {
-      birthdateDead();
+    alert.birthdate.innerText = "Vous êtes fossilisé ? Rentrez une date valide ! ";
+    event.preventDefault();
+    return false;
+  }
+  else if(birthday > today){
+    alert.birthdate.innerText = "Vous ne pouvez pas être né.e dans le futur ! ";
+    event.preventDefault();
+    return false;
   }
   else{
-    removeAlertBirthdate();
-    birthdateIsValid = true;
+    alert.birthdate.innerText = "";
+    return true;
   }
 }
 
 // Validation de la checkbox CGV 
 
-function cgvValidation(){
-  var cgvIsValid = false; 
+function cgvValidation(){ 
 
   if(!cgv.checked){
     alert.cgv.innerText="Vous devez accepter nos conditions d'utilisation";
     alert.cgv.style.float = "left";
     event.preventDefault();
+    return false;
   }
   else{
     alert.cgv.innerText="";
-    cgvIsValid = true;
-
+    return true;
   }
-
 }
 
 // Validation du Formulaire
 
 function validate(){
-
-  var formIsValid; 
 
   firstNameValidation();
   lastNameValidation();
@@ -222,19 +168,17 @@ function validate(){
   birthdateValidation();
   cgvValidation();
 
+  if(firstNameValidation() && lastNameValidation() && emailValidation() && birthdateValidation() && cgvValidation()){
+    showMessage();
+  }
 }
 
-
-
-  
 // Message de confirmation du formulaire
 
 function showMessage() {
   confirmationBg.style.display = "flex";
   event.preventDefault();
 }
-
-
 
 // Fermeture du message de confirmation 
 let confirmationBg = document.getElementById('container-confirmation');
