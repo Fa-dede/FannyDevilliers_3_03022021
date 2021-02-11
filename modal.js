@@ -35,10 +35,10 @@ closeBtn.addEventListener("click", closeModal);
 let firstName = document.getElementById('first');
 let lastName = document.getElementById('last');
 let email = document.getElementById('email');
-let birthdate = document.getElementById('birthdate');
+// let birthday = document.getElementById('birthdate');
 let cgv = document.getElementById('checkbox1');
 
-// Alertes 
+// Alertes Messages
 
 let alert = {
   firstName : document.getElementById('errorFirstName'),
@@ -48,246 +48,206 @@ let alert = {
   cgv : document.getElementById('errorCgv')
 }
 
-// Validation du Prénom 
+// // Validation du Prénom 
+
 function firstNameValidation(){
-  let value = firstName.value;
-  if(value.length > 2)
-  return true;
-  else return false;
+
+  var firstNameIsValid = false;
+
+  function firstNameError(){
+    alert.firstName.innerText="Veuillez entrer au moins 2 caractères";
+    event.preventDefault();
+  }
+  
+  function removeAlertFirstName(){
+    alert.firstName.innerText = "";
+  }
+
+  if(firstName.value.length < 2){
+    firstNameError();
+  }
+  else{
+    removeAlertFirstName();
+    firstNameIsValid = true;
+  }
 }
 
 // Validation du Nom 
+
 function lastNameValidation(){
-  let value = lastName.value;
-  if(value.length > 2)
-  return true;
-  else return false;
+
+  var lastNameIsValid = false;
+
+  function lastNameError(){
+    alert.lastName.innerText="Veuillez entrer au moins 2 caractères";
+    event.preventDefault();
+  }
+  
+  function removeAlertLastName() {
+    alert.lastName.innerText = "";
+  }
+
+  if(lastName.value.length < 2){
+    lastNameError();
+  }
+  else{
+    removeAlertLastName();
+    lastNameIsValid = true;
+  }
 }
 
 // Validation email 
-function emailValidation(){
-  let regex = /\S+@\S+\.\S+/;
-  return regex.test(email.value);
+
+function emailValidation() {
+
+  // function emailIsValid(){
+  //   let emailValue = email.value; 
+  //   let Regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+  //   return Regex.test(emailValue);}
+  
+var mailFormat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+if(email.value.match(mailFormat)){
+  alert.email.innerText = "";
+  return true;
+}
+else if(email.value == ""){
+  alert.email.innerText = "Veuillez renseigner votre adresse email.";
+  return false;
+}
+else if(!email.value.match(mailFormat)){
+  alert.email.innerText = "L'adresse email n'est pas valide, veuillez renseigner une adresse valide.";
+  return false;
 }
 
-// Validation date de naissance
+
+  // if(emailIsValid){
+  //   alert.email.innerText="C'est tout bon ! ";
+  //   return true;
+  // }
+
+  // else if(email.value == ""){
+  //   alert.email.innerText="Entrez une adresse email";
+  //   event.preventDefault; 
+  // }
+
+  
+  // else if(!emailIsValid){
+  //   alert.email.innerText="Entrez une adresse email VA LI DE ! ";
+  //   event.preventDefault;
+  // }
+  // else{
+  //   alert.email.innerText="";
+  //   mailIsValid = true;
+  // }
+}
+
+//Validation date de naissance
+
 function birthdateValidation(){
-  let regex;
-	return regex.test(birthdate.value);
+  
+  var birthdateIsValid = false;
+
+  let birthdayInput = document.getElementById('birthdate').value;
+
+  var birthday = new Date(birthdayInput); // Cherche valeur dans input 'birthdate'
+  
+  var today = new Date(); // Date actuelle
+  
+  var currentTime = today.getTime(); // conversion en min
+  
+  var birthdayTime = birthday.getTime();
+  
+  var age = (currentTime - birthdayTime)/31536000000; // calcul de l'âge 
+
+  function birthdateMinor () {
+    alert.birthdate.innerText = "Vous devez être majeur.e pour pouvoir vous inscrire";
+    event.preventDefault();
+    
+  }
+
+  function birthdateDead () {
+    alert.birthdate.innerText = "Vous êtes fossilisé ? Rentrez une date valide ! "
+    event.preventDefault();
+    
+  }
+
+  function removeAlertBirthdate (){
+    alert.birthdate.innerText = "";
+  }
+
+  if(birthdayInput === ""){
+    alert.birthdate.innerText = "Merci d'entrer votre date de naissance";
+    event.preventDefault();
+  }
+  else if(age >= 0 && age < 18){
+     birthdateMinor();
+  }
+  else if (age > 120) {
+      birthdateDead();
+  }
+  else{
+    removeAlertBirthdate();
+    birthdateIsValid = true;
+  }
 }
 
 // Validation de la checkbox CGV 
 
 function cgvValidation(){
-  return cgv.checked;
-}
+  var cgvIsValid = false; 
 
-
-// Validation du Formulaire
-function validate(){
-  let isCorrect = true;
-
-  if(!firstNameValidation()) {
-    isCorrect = false;
-    alert.firstName.innerHTML="Merde";
-    event.preventDefault();
-  }
-
-  if(!lastNameValidation()) {
-    isCorrect = false;
-    alert.lastName.innerHTML="Merde";
-    event.preventDefault();
-  }
-
-  if(!emailValidation()){
-    isCorrect = false; 
-    alert.email.innerHTML = "Entrez une adresse valide."
-    event.preventDefault();
-  }
-  if(!birthdateValidation()) {
-    isCorrect = false;
-    alert.birthdate.innerHTML = "Entrez votre date de naissance";
-    event.preventDefault();
-  }
-  if(!cgvValidation()) {
-    isCorrect = false;
-    alert.cgv.innerHTML = "Vous devez accepter ! ";
+  if(!cgv.checked){
+    alert.cgv.innerText="Vous devez accepter nos conditions d'utilisation";
     alert.cgv.style.float = "left";
     event.preventDefault();
   }
+  else{
+    alert.cgv.innerText="";
+    cgvIsValid = true;
 
-  
-
-
-  else {
-    return true;
   }
+
+}
+
+// Validation du Formulaire
+
+function validate(){
+
+  var formIsValid; 
+
+  firstNameValidation();
+  lastNameValidation();
+  emailValidation();
+  birthdateValidation();
+  cgvValidation();
+
 }
 
 
 
-
-
-
-
-
-
-
-
-// function validate() {
-//   if(firstName.value.length < 2 ){
-//     errorMsg.firstName.innerHTML="merde!";
-//     firstName.focus();
-//     event.preventDefault();
-//   }
-
-//   if(lastName.value.length <2){
-//     errorMsg.lastName.innerHTML="merde!";
-//     lastName.focus();
-//     event.preventDefault();
-//   }
-//   if(email.value == ""){
-//     errorMsg.email.innerHTML="Rentre ton mail !";
-//     event.preventDefault();
-//   }
-
-// }
-
-// submitBtn.addEventListener('click', removeErrors);
   
-
-
-
-    // if (lastName.value.lenght < 2 ){
-    //   errorLastName.innerHTML = "Veuillez entrer 2 caractères ou plus pour le champ du nom";
-    //   lastName.focus();
-      
-    // }
-    // if (email.value == ""){
-    //   email.style.backgroundColor = '#279e7a';
-    //   errorEmail.innerHTML = "Veuillez saisir votre adresse mail";
-    //   email.focus();
-      
-    // }
-    // if(birthDate.value == "") {
-    //   birthDate.style.backgroundColor = '#279e7a';
-    //   errorBirthdate.innerHTML = "Veuillez saisir votre date de naissance";
-    //   birthDate.focus();
-      
-    // }
-    // if (cgv.checked == false) {
-    //   errorCgv.innerHTML = "Vous devez vérifier que vous acceptez les termes et conditions.";
-    // }
-
-
-
-
-
-
-
-
-// Confirmation Prénom 
-
-
-// function firstNameValidation(){
-//   if(inputs.firstName.value.length < 2){
-//     errorMessages.firstName;
-//     inputs.firstName.focus();
-//     return false;
-//   }
-//   else{
-//     return true;
-//   }
-// }
-
-
-
-
-
 // Message de confirmation du formulaire
 
-
-
-// function showMessage() {
-//   confirmationBg.style.display = "flex";
-//   event.preventDefault();
-// }
-
-
-
-
-
-
-
-//Validation des champs
-
-// let firstName = document.forms["reserve"] ["first"].value;
-// let errorFirstName = document.getElementById('errorFirstName');
-
-// let lastName = document.forms['reserve'] ['last'];
-// let errorLasstName = document.getElementById('errorLastName');
-
-// let email = document.forms['reserve'] ['email'];
-// let errorEmail = document.getElementById('errorEmail');
-
-// let birthDate = document.forms['reserve'] ['birthdate'];
-// let errorBirthdate = document.getElementById('errorBirthdate');
-
-// let radioButtons = document.forms['reserve'] ['location'];
-// let errorRadioButtons = document.getElementById('errorRadioButtons');
-
-// let cgv = document.forms['reserve'] ['checkbox1'];
-// let errorCgv = document.getElementById('errorCgv');
-
-// let buttonSubmit = document.getElementById('btn-envoi');
-// let confirmMessage = document.getElementById('confirmation-popup');
-
-// function notGood() {
-
-// }
-
-
-
-// let thereIsError = false;
-
-// if(thereIsError){
-
-// }
-
-
-
-
-
-
-
-
-
-
-
-      
-//     }
-//     else{
-//       showMessage();
-//       closeModal();
-//     }
-// }
-
-
+function showMessage() {
+  confirmationBg.style.display = "flex";
+  event.preventDefault();
+}
 
 
 
 // Fermeture du message de confirmation 
-// let confirmationBg = document.getElementById('container-confirmation');
+let confirmationBg = document.getElementById('container-confirmation');
 
-// let buttonCloseConfirmation = document.getElementById('close-confirmation');
-// let crossCloseConfirmation = document.getElementById('cross-confirmation');
+let buttonCloseConfirmation = document.getElementById('close-confirmation');
+let crossCloseConfirmation = document.getElementById('cross-confirmation');
 
-// function closeConfirmation () {
-//   confirmationBg.style.display = 'none';
-// }
+function closeConfirmation () {
+  confirmationBg.style.display = 'none';
+}
 
-// buttonCloseConfirmation.addEventListener('click', closeConfirmation);
-// crossCloseConfirmation.addEventListener('click', closeConfirmation);
+buttonCloseConfirmation.addEventListener('click', closeConfirmation);
+crossCloseConfirmation.addEventListener('click', closeConfirmation);
 
 
 
