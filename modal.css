@@ -43,6 +43,7 @@ img {
 .main-navbar {
     float: right;
 }
+
 .topnav a {
   float: left;
   display: block;
@@ -76,9 +77,33 @@ img {
   .topnav a.icon {
     float: right;
     display: block;
-    margin-top: -15px;
+    /* margin-top: -15px; */
   }
 } 
+
+@media screen and (max-width: 1200px){
+
+  .topnav{
+    margin-bottom: 20px;
+  }
+
+  .header-logo{
+    display: inline-block;
+  }
+
+  .main-navbar {
+    display: block;
+    float: unset;
+    margin-top: 60px;
+  }
+
+  .topnav a {
+    display: block;
+    width: 100%;
+    margin: auto;
+  }
+
+}
 
 main {
   font-size: 130%;
