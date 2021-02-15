@@ -546,14 +546,14 @@ footer {
 
 #cross-confirmation{
   color: white; 
-  display: block;
-  float: right;
+  position: relative;
   cursor: pointer;
 }
 
 #confirmation-popup p {
-   position: relative;
-   top: 40%;
+  display: block;
+  position: relative;
+  top: 40%;
   color: white; 
   font-weight: 300; 
   font-size: 25px;
@@ -562,7 +562,7 @@ footer {
 #cross-confirmation{
   float: right;
   position: relative;
-  left: 20px;
+  padding: unset;
   cursor: pointer;
 }
 
