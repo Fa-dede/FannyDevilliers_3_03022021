@@ -520,7 +520,7 @@ footer {
   height: 100px;
   justify-content: center; 
   z-index: 999;
-  /* display: none; */
+  display: none;
   position: fixed;
   left: 0;
   top: 0;
@@ -572,7 +572,7 @@ footer {
 }
 
 .error{
-  display: none;
+  /* display: none; */
   font-family: 'Roboto';
   font-weight: 300;
   color: #FF4E60;
