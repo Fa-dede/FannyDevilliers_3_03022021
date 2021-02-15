@@ -152,18 +152,15 @@ function cgvValidation(){
   if(!inputs.cgv.checked){
     alerts.cgv.innerText="Vous devez accepter nos conditions d'utilisation";
     event.preventDefault();
-    thereIsNoError = false;
-    // return false;
+    return false;
   }
   else{
     alerts.cgv.innerText="";
-    // return true;
+    return true;
   }
 }
 
 // Validation du Formulaire
-
-var thereIsNoError = ""; 
 
 function validate(){
 
@@ -174,12 +171,12 @@ function validate(){
   cgvValidation();
 
   //Affichage de la fenêtre de confirmation en cas de validation des champs
-
-  if(thereIsNoError){
+  if(firstNameValidation() && lastNameValidation() && emailValidation() && birthdateValidation() && cgvValidation()){
     closeModal();
     showMessage();
   }
 }
+
 
 // Message de confirmation du formulaire
 
