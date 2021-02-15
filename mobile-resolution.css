@@ -5,9 +5,9 @@
     }
 
     .header-logo img{
-        margin: 15px 0 0 15px;
+        margin: 5px 0 0 15px;
         padding: 0;
-        width: 40%;
+        width: 55%;
     }
 
     .topnav{
@@ -66,11 +66,11 @@
         z-index: 9999;
     }
 
-
-
     main {
         margin: unset;
         margin: 0 30px 0 30px;
+        font-size: unset;
+        font-weight: unset;
     }
 
     .hero-section {
@@ -131,5 +131,111 @@
     font-size: 10px;
     }
 
+    /* Ouverture de la modale  */
 
+    .background{
+        background-color: unset;
+        margin-top: 70px; 
+    }
+
+    .content{
+        height: 100%;
+    }
+
+    .modal-body{
+        padding-top: 0;
+    }
+
+    .close{
+        transform: scale(.55);
+    }
+
+    label{
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+
+    .text-label, .quantity{
+        font-size: 14px;
+        margin-top: 5px;
+    }
+
+    .text-control{
+        font-size: 18px;
+        margin-bottom: 5px;
+    }
+
+    #birthdate{
+        margin-bottom: 10px;
+    }
+
+    .number{
+        margin-top: 10px;
+    }
+
+
+    .quantity p{
+        margin-top: 30px;
+    }
+
+    /* Checkboxes Villes */
+
+    .location-data{
+        margin-bottom: 15px;
+    }
+
+    .checkbox-label{
+        font-family: 'Roboto';
+        font-weight: 300;
+        display: inline-flex;
+        margin-bottom: 3px;
+        margin-right: -10px;
+    }
+
+    .checkbox-label p {
+        position: relative;
+        right: 7px;
+    }
+
+    /* Conditions d'utilisation et newsletter */
+
+    .checkbox2-label{
+        display: block;
+        margin-bottom: 12px;
+        margin-top: 10px;
+    }
+
+    .checkbox2-label span{
+        font-family: 'Roboto';
+        font-weight: 100;
+    }
+
+    .btn-submit{
+        width: 145px;
+        height: 30px;
+        padding: unset;
+        font-size: 14px;
+    }
+
+    #error-birthdate{
+        margin-bottom: 10px;
+        margin-top: -5px;
+    }
+
+    #container-confirmation{
+        background-color: unset;
+        margin-top: 40px;
+    }
+    
+    #confirmation-popup{
+        margin-top: 50px;
+    }
+
+    #confirmation-popup p {
+        font-style: 36px;
+    }
+
+    #close-confirmation {
+        top: 70%;
+    }
 }
