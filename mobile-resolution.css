@@ -136,10 +136,12 @@
     .background{
         background-color: unset;
         margin-top: 70px; 
+        height: auto;
     }
 
     .content{
-        height: 100%;
+        height: auto;
+        overflow:scroll;
     }
 
     .modal-body{
@@ -215,6 +217,10 @@
         height: 30px;
         padding: unset;
         font-size: 14px;
+    }
+
+    .error{
+        font-size: 10px;
     }
 
     #error-birthdate{

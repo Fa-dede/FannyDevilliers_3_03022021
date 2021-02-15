@@ -574,10 +574,15 @@ footer {
 .error{
   /* display: none; */
   font-family: 'Roboto';
+  margin-top: 8px;
   font-weight: 300;
   color: #FF4E60;
-  font-size: 10px;
+  font-size: 12px;
   display: block;
+}
+
+#error-birthdate{
+  margin-bottom: 8px;
 }
 
 #error-cgv{

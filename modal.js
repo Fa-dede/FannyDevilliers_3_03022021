@@ -56,13 +56,11 @@ function firstNameValidation(){
     alerts.firstName.innerText="Veuillez entrer au moins 2 caractères";
     // inputs.firstName.focus();
     event.preventDefault();
-    thereIsNoError = false;
     return false;
     
   }
   else{
     alerts.firstName.innerText = "";
-    thereIsNoError = true;
     return true;
   }
 }
@@ -154,11 +152,12 @@ function cgvValidation(){
   if(!inputs.cgv.checked){
     alerts.cgv.innerText="Vous devez accepter nos conditions d'utilisation";
     event.preventDefault();
-    return false;
+    thereIsNoError = false;
+    // return false;
   }
   else{
     alerts.cgv.innerText="";
-    return true;
+    // return true;
   }
 }
 
