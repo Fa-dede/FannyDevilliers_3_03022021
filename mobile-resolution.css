@@ -194,7 +194,7 @@
         margin-right: -10px;
     }
 
-    .checkbox-label p {
+    .checkbox-label span {
         position: relative;
         right: 7px;
     }

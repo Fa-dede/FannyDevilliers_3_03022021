@@ -177,7 +177,6 @@ function validate(){
   }
 }
 
-
 // Message de confirmation du formulaire
 
 function showMessage() {
