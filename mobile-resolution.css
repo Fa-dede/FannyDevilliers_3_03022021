@@ -84,7 +84,7 @@
     color: #000;
     padding: unset;
     width: 100%;
-    flex: wrap;
+    flex-wrap: wrap;
     padding: 0;
     }
 
@@ -239,7 +239,7 @@
     }
 
     #confirmation-popup p {
-        font-style: 36px;
+        font-size: 36px;
     }
 
     #close-confirmation {
