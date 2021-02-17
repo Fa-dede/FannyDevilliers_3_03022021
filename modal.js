@@ -1,3 +1,12 @@
+// DOM Elements
+const modalForm = document.getElementById('modal-form');
+const modalbg = document.querySelector(".background");
+const modalBtn = document.querySelectorAll(".modal-btn");
+const formData = document.querySelectorAll(".formData");
+const closeBtn = document.querySelector('.close');
+
+// Ouverture du menu de navigation
+
 function editNav() {
   var x = document.getElementById("myTopnav");
   if (x.className === "topnav") {
@@ -7,28 +16,26 @@ function editNav() {
   }
 }
 
-// DOM Elements
-const modalForm = document.getElementById('modal-form');
-const modalbg = document.querySelector(".background");
-const modalBtn = document.querySelectorAll(".modal-btn");
-const formData = document.querySelectorAll(".formData");
-const closeBtn = document.querySelector('.close');
+// Ouverture de la Modale "Inscription"
 
-// Ouverture de la Modale
 function launchModal() {
   modalbg.style.display = "block";
+  window.scroll(0,0); // Fait un scroll top à l'ouverture de la modale
+  document.body.style.overflow = 'hidden'; //Empêche le scroll de l'arrière plan quand modale est ouverte
 }
+
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
+// Fermeture de la Modale "Inscription"
 
-// Fermeture de la Modale
 function closeModal () {
   modalbg.style.display = 'none';
+  document.body.style.overflow = 'auto'; // Autorise le scroll lorsque modale est fermée
 }
 
 closeBtn.addEventListener("click", closeModal);
 
-// Elements à valider
+// Champs de formulaires
 
 let inputs = {
   firstName : document.getElementById('first'),
@@ -38,7 +45,7 @@ let inputs = {
   cgv : document.getElementById('checkbox1')
 }
 
-// alertes Messages
+// Alertes Messages
 
 let alerts = {
   firstName : document.getElementById('errorFirstName'),
@@ -48,16 +55,14 @@ let alerts = {
   cgv : document.getElementById('error-cgv')
 }
 
-// // Validation du Prénom 
+// Validation du Prénom 
 
 function firstNameValidation(){
 
   if(inputs.firstName.value.length < 2){
     alerts.firstName.innerText="Veuillez entrer au moins 2 caractères";
-    // inputs.firstName.focus();
     event.preventDefault();
     return false;
-    
   }
   else{
     alerts.firstName.innerText = "";
@@ -71,7 +76,6 @@ function lastNameValidation(){
 
   if(inputs.lastName.value.length < 2){
     alerts.lastName.innerText="Veuillez entrer au moins 2 caractères";
-    // inputs.lastName.focus();
     event.preventDefault();
     return false;
   }
@@ -85,7 +89,7 @@ function lastNameValidation(){
 
 function emailValidation() {
   
-var mailFormat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/; //scope global si besoin de réutiliser 
+var mailFormat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/; //REGEX email format valide 
 
   if(inputs.email.value.match(mailFormat)){
     alerts.email.innerText = "";
@@ -93,13 +97,11 @@ var mailFormat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9
   }
   else if(inputs.email.value == ""){
     alerts.email.innerText = "Veuillez renseigner votre adresse email.";
-    // inputs.email.focus();
     event.preventDefault();
     return false;
   }
   else if(!inputs.email.value.match(mailFormat)){
     alerts.email.innerText = "L'adresse email n'est pas valide, veuillez renseigner une adresse valide.";
-    // inputs.email.focus();
     event.preventDefault();
     return false;
   }
@@ -164,14 +166,68 @@ function cgvValidation(){
 
 function validate(){
 
-  firstNameValidation(); 
-  lastNameValidation(); 
-  emailValidation(); 
-  birthdateValidation(); 
+  let firstNameisValid = false;
+  let lastNameisValid = false;
+  let emailisValid = false;
+  let birthdateisValid = false;
+  let cgvisValid = false;
+
+  let borderWithError = "1px solid #FE142F";
+  let borderWithoutError = "";
+
   cgvValidation();
 
+    if(cgvValidation()){
+      cgvisValid = true;
+    }
+
+  birthdateValidation();
+
+    if(birthdateValidation()){
+      birthdateisValid = true;
+      inputs.birthdate.style.border = borderWithoutError;
+    }
+    else if(birthdateisValid == false){
+      inputs.birthdate.focus();
+      inputs.birthdate.style.border = borderWithError;
+    }
+
+  emailValidation();
+
+    if(emailValidation()){
+      emailisValid = true;
+      inputs.email.style.border = borderWithoutError;
+    }
+    else if(emailisValid == false){
+      inputs.email.focus();
+      inputs.email.style.border = borderWithError;
+    }
+
+  lastNameValidation();
+
+    if(lastNameValidation()){
+      lastNameisValid = true;
+      inputs.lastName.style.border = borderWithoutError;
+    }
+    else if(firstNameisValid == false){
+      inputs.lastName.focus();
+      inputs.lastName.style.border = borderWithError;
+    }
+
+  firstNameValidation();
+
+    if(firstNameValidation()){
+      firstNameisValid = true;
+      inputs.firstName.style.border = borderWithoutError;
+    }
+    else if(firstNameisValid == false){
+      inputs.firstName.focus();
+      inputs.firstName.style.border = borderWithError;
+    }
+
   //Affichage de la fenêtre de confirmation en cas de validation des champs
-  if(firstNameValidation() && lastNameValidation() && emailValidation() && birthdateValidation() && cgvValidation()){
+
+  if(firstNameisValid && lastNameisValid && emailisValid && birthdateisValid && cgvisValid){
     closeModal();
     showMessage();
   }
@@ -181,6 +237,7 @@ function validate(){
 
 function showMessage() {
   confirmationBackground.style.display = "flex";
+  document.body.style.overflow = 'hidden'; //Empêche le scroll de l'arrière plan quand modale CONFIRMATION est ouverte
   event.preventDefault();
 }
 
@@ -191,6 +248,7 @@ let crossCloseConfirmation = document.getElementById('cross-confirmation');
 
 function closeConfirmation () {
   confirmationBackground.style.display = 'none';
+  document.body.style.overflow = 'auto';
 }
 
 buttonCloseConfirmation.addEventListener('click', closeConfirmation);
