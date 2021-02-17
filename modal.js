@@ -2,7 +2,7 @@
 const modalForm = document.getElementById('modal-form');
 const modalbg = document.querySelector(".background");
 const modalBtn = document.querySelectorAll(".modal-btn");
-const formData = document.querySelectorAll(".formData");
+const formData = document.querySelectorAll(".form-data");
 const closeBtn = document.querySelector('.close');
 
 // Ouverture du menu de navigation
@@ -48,9 +48,9 @@ let inputs = {
 // Alertes Messages
 
 let alerts = {
-  firstName : document.getElementById('errorFirstName'),
-  lastName : document.getElementById('errorLastName'), 
-  email : document.getElementById('errorEmail'),
+  firstName : document.getElementById('error-first-name'),
+  lastName : document.getElementById('error-last-name'), 
+  email : document.getElementById('error-email'),
   birthdate : document.getElementById('error-birthdate'),
   cgv : document.getElementById('error-cgv')
 }

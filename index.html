@@ -15,22 +15,23 @@
   <body>
 
     <!-- Message de confirmation d'envoi du formulaire  -->
+
     <div id="container-confirmation">
       <div id="confirmation-popup">
         <img id="cross-confirmation" src="./cross-close.svg" alt="close-cross">
-        <p>Merci !<br> 
-        <p>Votre réservation a bien été reçue.</p>
+        <p>Merci !<br> Votre réservation a bien été reçue.</p>
         <button id="close-confirmation">OK</button>
       </div>
     </div>
 
     <!-- Début de la Landing page  -->
+
     <div class="topnav" id="myTopnav">
       <div class="header-logo">
         <img alt="logo" src="Logo.png" />
     </div>
+
     <div class="main-navbar">
-      
       <a href="#" class="active"><span>Accueil</span></a>
       <a href="#"><span>Détails de l'évènement</span></a>
       <a href="#"><span>À propos</span></a>
@@ -41,6 +42,7 @@
       </a>
     </div>
   </div>
+
     <main>
       <div class="hero-section">
         <div class="hero-content">
@@ -61,7 +63,7 @@
         </button>
       </div>
 
-      <!-- Modal  -->
+      <!-- Modale d'inscription  -->
 
       <div class="background">
         <div class="content">
@@ -83,10 +85,10 @@
                   type="text"
                   id="first"
                   name="first"
-                  required
                   minlength="2"
+                  required
                 />
-                <span class="error" id="errorFirstName"></span>
+                <span class="error" id="error-first-name"></span>
               </div>
               <div
                 class="form-data">
@@ -96,10 +98,10 @@
                   type="text"
                   id="last"
                   name="last"
-                  required
                   minlength="2"
+                  required 
                 />
-                <span class="error" id="errorLastName"></span>
+                <span class="error" id="error-last-name"></span>
               </div>
               <div
                 class="form-data">
@@ -111,7 +113,7 @@
                   name="email"
                   required
                 /><br>
-                <span class="error" id="errorEmail"></span>
+                <span class="error" id="error-email"></span>
               </div>
               <div
                 class="form-data">
@@ -223,8 +225,6 @@
 
               </div>
 
-              <span class="error" id="errorLocation"></span>
-
               <div class="form-data">
                 <input
                   class="checkbox-input"
@@ -261,11 +261,13 @@
         </div>
       </div>
     </main>
+
     <footer>
       <p class="copyrights">
         Copyright 2014 - 2020, GameOn Inc.
       </p>
     </footer>
+
     <script src="modal.js"></script>
   </body>
 </html>
