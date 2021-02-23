@@ -67,7 +67,7 @@ function firstNameValidation(){
     return false;
   }
   else if(!inputs.firstName.value.match(firstNameFormat)){
-    alerts.firstName.innerText="Veuillez entrer un nom valide";
+    alerts.firstName.innerText="Ce n'est pas un prénom ! Veuillez entrer un nom valide";
     event.preventDefault();
     return false;
   }
@@ -89,7 +89,7 @@ function lastNameValidation(){
     return false;
   }
   else if(!inputs.lastName.value.match(nameFormat)){
-    alerts.lastName.innerText="Veuillez entrer un nom valide";
+    alerts.lastName.innerText="Ce n'est pas un nom ! Veuillez entrer un nom valide";
     event.preventDefault();
     return false;
   }
