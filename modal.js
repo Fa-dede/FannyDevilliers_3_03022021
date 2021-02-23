@@ -59,8 +59,15 @@ let alerts = {
 
 function firstNameValidation(){
 
+  let firstNameFormat = /^[a-zA-Z\é\è\ë\ê-]+$/;
+
   if(inputs.firstName.value.length < 2){
     alerts.firstName.innerText="Veuillez entrer au moins 2 caractères";
+    event.preventDefault();
+    return false;
+  }
+  else if(!inputs.firstName.value.match(firstNameFormat)){
+    alerts.firstName.innerText="Veuillez entrer un nom valide";
     event.preventDefault();
     return false;
   }
@@ -74,8 +81,15 @@ function firstNameValidation(){
 
 function lastNameValidation(){
 
+  let nameFormat = /^[a-zA-Z\é\è\ë\ê-]+$/;
+
   if(inputs.lastName.value.length < 2){
     alerts.lastName.innerText="Veuillez entrer au moins 2 caractères";
+    event.preventDefault();
+    return false;
+  }
+  else if(!inputs.lastName.value.match(nameFormat)){
+    alerts.lastName.innerText="Veuillez entrer un nom valide";
     event.preventDefault();
     return false;
   }
@@ -89,7 +103,7 @@ function lastNameValidation(){
 
 function emailValidation() {
   
-var mailFormat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/; //REGEX email format valide 
+let mailFormat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/; //REGEX email format valide 
 
   if(inputs.email.value.match(mailFormat)){
     alerts.email.innerText = "";
