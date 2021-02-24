@@ -42,6 +42,7 @@ let inputs = {
   lastName : document.getElementById('last'),
   email : document.getElementById('email'),
   birthdate : document.getElementById('birthdate'),
+  turnaments : document.getElementById('quantity'),
   cgv : document.getElementById('checkbox1')
 }
 
@@ -52,6 +53,7 @@ let alerts = {
   lastName : document.getElementById('error-last-name'), 
   email : document.getElementById('error-email'),
   birthdate : document.getElementById('error-birthdate'),
+  turnaments : document.getElementById('error-turnaments'),
   cgv : document.getElementById('error-cgv')
 }
 
@@ -161,6 +163,22 @@ function birthdateValidation(){
   }
 }
 
+// Validation de du nombre de tournoi
+
+function numberOfTurnaments(){
+
+  if(inputs.turnaments.value == "" || inputs.turnaments.value > 99){
+    alerts.turnaments.innerText = "Vous devez indiquer un nombre entre 0 et 99";
+    event.preventDefault();
+    return false;
+  }
+  else{
+    alerts.turnaments.innerText="";
+    return true;
+  }
+
+}
+
 // Validation de la checkbox CGV 
 
 function cgvValidation(){ 
@@ -184,15 +202,31 @@ function validate(){
   let lastNameisValid = false;
   let emailisValid = false;
   let birthdateisValid = false;
+  let numberOfTurnamentsisValid = false;
   let cgvisValid = false;
 
   let borderWithError = "1px solid #FE142F";
   let borderWithoutError = "";
 
+
   cgvValidation();
 
     if(cgvValidation()){
       cgvisValid = true;
+    }
+    else{
+      cgvisValid = false;
+    }
+
+  numberOfTurnaments();
+
+    if(numberOfTurnaments()){
+      numberOfTurnamentsisValid = true;
+      inputs.turnaments.style.border = borderWithoutError;
+    }
+    else if (numberOfTurnamentsisValid == false){
+      inputs.turnaments.focus();
+      inputs.turnaments.style.border = borderWithError;
     }
 
   birthdateValidation();
@@ -241,7 +275,7 @@ function validate(){
 
   //Affichage de la fenêtre de confirmation en cas de validation des champs
 
-  if(firstNameisValid && lastNameisValid && emailisValid && birthdateisValid && cgvisValid){
+  if(firstNameisValid && lastNameisValid && emailisValid && birthdateisValid && numberOfTurnamentsisValid && cgvisValid){
     closeModal();
     showMessage();
   }

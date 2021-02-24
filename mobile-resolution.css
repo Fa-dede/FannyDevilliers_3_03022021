@@ -179,7 +179,7 @@
         font-family: 'Roboto';
         font-weight: 300;
         display: inline-flex;
-        margin-bottom: 3px;
+        margin-bottom: 5px;
         margin-right: -10px;
     }
 
@@ -216,6 +216,10 @@
     #error-birthdate{
         margin-bottom: 10px;
         margin-top: -6px;
+    }
+
+    #second-checkbox{
+        bottom: unset;
     }
 
     #container-confirmation{
