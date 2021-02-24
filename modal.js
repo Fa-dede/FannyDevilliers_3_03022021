@@ -167,7 +167,7 @@ function birthdateValidation(){
 
 function numberOfTurnaments(){
 
-  if(inputs.turnaments.value == "" || inputs.turnaments.value > 99){
+  if(inputs.turnaments.value == "" || inputs.turnaments.value > 99 || inputs.turnaments.value < 0){
     alerts.turnaments.innerText = "Vous devez indiquer un nombre entre 0 et 99";
     event.preventDefault();
     return false;
